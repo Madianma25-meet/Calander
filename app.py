@@ -25,6 +25,10 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 db = firebase.database()
 
+events = {
+    "CAS": []
+}
+
 #app route main
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -86,16 +90,24 @@ def event():
 
 
 #app route - thanks
-@app.route('/thanks', methods= ['GET', 'POST'])
-def thanks():
-    if request.method == 'GET':
+@app.route('/thanks<event>', methods= ['GET', 'POST'])
+def thanks(event):
+    if username == 'admin':
+        login_session['admin'] = True
+        return redirect(url_for('admin')) 
+    if request.method == 'POST':
+        events[event].append(login_session['user']['email'])
+        db.child("events").push(events)
         return render_template("thanks.html")
+    return render_template("event.html")
+
 
 #app route - admin
 @app.route('/admin', methods= ['GET', 'POST'])
 def admin():
     if request.method == 'GET':
-        return render_template("admin.html")
+
+        return render_template("admin.html" , events=events)
 
 
 #app route - signout
