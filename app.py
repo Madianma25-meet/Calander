@@ -5,7 +5,7 @@ import pyrebase
 
 #app load - loading the app.
 app = Flask(__name__, template_folder='templates', static_folder='static')
-app.config['SECRET_KEY'] = 'super-secret-key'
+app.config['SECRET_KEY'] = 'Adminsecretkey'
 
 
 #Firebase configuration
@@ -41,6 +41,9 @@ def login():
         password = request.form['password']
 
         try:
+            if username == 'admin':
+                login_session['admin'] = True
+                return redirect(url_for('admin'))           
             login_session['user'] = auth.sign_in_with_email_and_password(email, password)
             return redirect(url_for('event'))
 
@@ -87,6 +90,12 @@ def event():
 def thanks():
     if request.method == 'GET':
         return render_template("thanks.html")
+
+#app route - admin
+@app.route('/admin', methods= ['GET', 'POST'])
+def admin():
+    if request.method == 'GET':
+        return render_template("admin.html")
 
 
 #app route - signout
