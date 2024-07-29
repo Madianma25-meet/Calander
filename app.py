@@ -5,7 +5,7 @@ import pyrebase
 
 #app load - loading the app.
 app = Flask(__name__, template_folder='templates', static_folder='static')
-app.config['SECRET_KEY'] = 'super-secret-key'
+app.config['SECRET_KEY'] = 'Adminsecretkey'
 
 
 #Firebase configuration
