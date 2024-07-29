@@ -29,6 +29,7 @@ events = {
     "CAS": []
 }
 
+
 #app route main
 @app.route('/', methods=['GET', 'POST'])
 def home():
