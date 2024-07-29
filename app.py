@@ -16,7 +16,8 @@ firebaseConfig = {
   "storageBucket": "calander-d12ed.appspot.com",
   "messagingSenderId": "319275616286",
   "appId": "1:319275616286:web:42b2f118ed53df43d3860f",
-  "measurementId": "G-VJ1ZPQ17FS"
+  "measurementId": "G-VJ1ZPQ17FS",
+  "databaseURL": "https://calander-d12ed-default-rtdb.europe-west1.firebasedatabase.app/"
 };
 
 #Initialize firebase
